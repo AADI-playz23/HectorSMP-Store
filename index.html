@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HectorSMP Store</title>
+    <title>Your Server Store</title>
     <style>
         * {
             margin: 0;
@@ -38,6 +38,30 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             text-shadow: 0 0 30px rgba(255,215,0,0.5);
+        }
+        
+        .discord-banner {
+            background: linear-gradient(135deg, #5865F2, #4752c4);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            margin: 20px 0;
+            border: 2px solid #fff;
+        }
+        
+        .discord-banner a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.3em;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .discord-banner a:hover {
+            color: #ffd700;
         }
         
         .ranks-grid {
@@ -123,13 +147,119 @@
             margin-bottom: 30px;
             color: #ffd700;
         }
+        
+        .payment-section {
+            background: rgba(255,255,255,0.1);
+            padding: 40px;
+            border-radius: 15px;
+            margin-top: 40px;
+            text-align: center;
+        }
+        
+        .payment-methods {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 50px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+        
+        .qr-code {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        
+        .qr-code img {
+            width: 200px;
+            height: 200px;
+            border: 2px solid #333;
+        }
+        
+        .payment-info {
+            text-align: left;
+            max-width: 400px;
+        }
+        
+        .payment-info h3 {
+            color: #ffd700;
+            margin-bottom: 15px;
+        }
+        
+        .payment-steps {
+            list-style: none;
+            margin: 20px 0;
+        }
+        
+        .payment-steps li {
+            margin: 10px 0;
+            padding-left: 25px;
+            position: relative;
+        }
+        
+        .payment-steps li:before {
+            content: "✓";
+            color: #10b981;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+        
+        .upi-id {
+            background: rgba(255,215,0,0.2);
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px 0;
+            border: 1px solid #ffd700;
+        }
+        
+        .upi-id strong {
+            color: #ffd700;
+            font-size: 1.2em;
+        }
+        
+        .contact-info {
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            border-top: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        @media (max-width: 768px) {
+            .payment-methods {
+                flex-direction: column;
+                gap: 30px;
+            }
+            
+            .header h1 {
+                font-size: 2em;
+            }
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
-            <h1>HectorSMP RANKS STORE</h1>
+            <h1>SERVER RANKS STORE</h1>
             <p>Upgrade your gameplay with amazing ranks and perks!</p>
+        </div>
+        
+        <!-- Discord Banner -->
+        <div class="discord-banner">
+            <a href="https://discord.com/invite/hmQZ22ARjr" target="_blank">
+                <span>🎮</span>
+                Join Our Discord Community!
+                <span>🎮</span>
+            </a>
         </div>
         
         <div class="ranks-grid">
@@ -228,13 +358,52 @@
                     <div class="rank-price">99 INR</div>
                     <button class="buy-button">Buy Now</button>
                 </div>
-                <div class="rank-card">
-                    <div class="rank-name"> DISCORD </div>
-                    <div class="rank-coins"></div>
-                    <div class="rank-price"></div>
-                    <button class="buy-button">Join NOW</button>
+            </div>
+        </div>
+        
+        <!-- Payment Section -->
+        <div class="payment-section">
+            <h2 class="section-title">PAYMENT METHODS</h2>
+            <p>Scan the QR code below to make payment via UPI</p>
+            
+            <div class="payment-methods">
+                <div class="qr-code">
+                    <!-- Replace with your actual QR code image -->
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=your-upi-id@paytm" alt="Payment QR Code" id="qrImage">
+                    <div style="margin-top: 10px; font-size: 0.9em; color: #333;">
+                        Scan to Pay
+                    </div>
+                </div>
+                
+                <div class="payment-info">
+                    <h3>How to Pay:</h3>
+                    <ol class="payment-steps">
+                        <li>Scan the QR code with any UPI app</li>
+                        <li>Enter the exact amount for your chosen rank</li>
+                        <li>Add your Minecraft username in payment note</li>
+                        <li>Complete the payment</li>
+                        <li>Join our Discord and provide payment proof</li>
+                    </ol>
+                    
+                    <div class="upi-id">
+                        <strong>UPI ID:</strong> 
+                        <span id="upiId">your-upi-id@paytm</span>
+                        <button onclick="copyUPI()" style="margin-left: 10px; padding: 5px 10px; border: none; border-radius: 5px; cursor: pointer; background: #ffd700; color: black;">Copy</button>
+                    </div>
+                    
+                    <div class="contact-info">
+                        <strong>After Payment:</strong><br>
+                        1. Join our Discord: <a href="https://discord.com/invite/hmQZ22ARjr" style="color: #ffd700;">https://discord.gg/hmQZ22ARjr</a><br>
+                        2. Send payment screenshot in #payments channel<br>
+                        3. Wait for rank activation (usually within 5-10 minutes)
+                    </div>
                 </div>
             </div>
+        </div>
+        
+        <div class="footer">
+            <p>Need help? Join our Discord: <a href="https://discord.com/invite/hmQZ22ARjr" style="color: #ffd700;">discord.gg/hmQZ22ARjr</a></p>
+            <p>© 2024 Your Server Name. All rights reserved.</p>
         </div>
     </div>
 
@@ -245,11 +414,40 @@
                 const rankName = this.parentElement.querySelector('.rank-name').textContent;
                 const price = this.parentElement.querySelector('.rank-price').textContent;
                 
-                alert(`Thank you for choosing ${rankName}!\nPrice: ${price}\n\nRedirecting to payment...`);
-                // Here you would integrate with your payment processor
-                // For example: window.location.href = 'your-payment-link';
+                // Scroll to payment section
+                document.querySelector('.payment-section').scrollIntoView({ 
+                    behavior: 'smooth' 
+                });
+                
+                // Show payment alert
+                setTimeout(() => {
+                    alert(`Purchase ${rankName}\nAmount: ${price}\n\nPlease scan the QR code below and make payment. Don't forget to add your Minecraft username in payment note!`);
+                }, 1000);
             });
         });
+        
+        // Copy UPI ID function
+        function copyUPI() {
+            const upiId = document.getElementById('upiId').textContent;
+            navigator.clipboard.writeText(upiId).then(() => {
+                alert('UPI ID copied to clipboard: ' + upiId);
+            });
+        }
+        
+        // Discord link handler
+        document.querySelector('.discord-banner a').addEventListener('click', function(e) {
+            // Optional: Add analytics tracking
+            console.log('Discord link clicked');
+        });
+        
+        // Replace with your actual QR code and UPI ID
+        function updatePaymentDetails(upiId, qrImageUrl) {
+            document.getElementById('upiId').textContent = upiId;
+            document.getElementById('qrImage').src = qrImageUrl;
+        }
+        
+        // Example: Update with your actual payment details
+        // updatePaymentDetails('your-real-upi@paytm', 'path/to/your-qr-code.png');
     </script>
 </body>
 </html>
